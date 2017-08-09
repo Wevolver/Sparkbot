@@ -9,7 +9,7 @@ const bot = new BootBot({
   verifyToken: process.env.FB_VERIFY_TOKEN,
   appSecret: process.env.FB_APP_SECRET,
 });
-rp('https://hardwarenews.wevolver.com/feed/')
+
 // bot.setGetStartedButton('GET_STARTED')
 bot.setGreetingText('Hey {{user_first_name}}, how\'s your day going? Glad to see you here today!')
 
@@ -48,8 +48,26 @@ var getWevolverFeed = function() {
       })
       return links;
     })
+  })
+  .catch(err => {
+    console.log(err)
+    return links = [ { title: 'Guide To Fabricating Microstructures With 3D Printing',
+        url: 'https://hardwarenews.wevolver.com/guide-fabricating-microstructures-3d-printing/',
+        description: '3D printing technologies have come a long way since Chuck Hull invented Stereolithography back in 1986. The first 3D printed object, a small blue eyec...',
+        image_url: undefined },
+      { title: 'New VR Tool Seeks to Make Product Design “Quicker and More Efficient”',
+        url: 'https://hardwarenews.wevolver.com/new-vr-tool-seeks-make-product-design-quicker-efficient/',
+        description: 'A new sketching tool for product designers has launched, which aims to “bring ideas to life quicker” through the use of virtual and augmented reality ...',
+        image_url: undefined },
+      { title: 'Designers Are Forgetting One Major Element Of The Design Process',
+        url: 'https://hardwarenews.wevolver.com/designers-forgetting-one-major-element-design-process/',
+        description: 'What do you do when your toaster breaks? Chances are, you toss it and buy another one. It’s only a toaster, after all. But what if your toaster was de...',
+        image_url: 'https://i0.wp.com/hardwarenews.wevolver.com/wp-content/uploads/2017/08/fairphone-18-980x652.jpg?resize=696%2C463&ssl=1' } ]
   });
 }
+
+getWevolverFeed()
+.then(links => console.log(links))
 
 bot.on('authentication', (payload, chat) => {
   console.log('authentication')
