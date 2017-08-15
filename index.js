@@ -75,7 +75,6 @@ bot.on('authentication', (payload, chat) => {
 
 bot.hear(['hello', 'hi', /hey( there)?/i, 'what up', 'yo'], (payload, chat) => {
   const text = payload.message.text;
-  chat.say(`${text}!`)
   chat.say({
       text: `${text}! I\'m the SparkBot, here to help you on your hardware journey. How can I help?`,
       quickReplies: [
