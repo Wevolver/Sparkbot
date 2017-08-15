@@ -76,6 +76,14 @@ bot.on('authentication', (payload, chat) => {
 bot.hear(['hello', 'hi', /hey( there)?/i, 'what up', 'yo'], (payload, chat) => {
   const text = payload.message.text;
   chat.say(`${text}!`)
+  chat.say({
+      text: `${text}! I\'m the SparkBot, here to help you on your hardware journey. How can I help?`,
+      quickReplies: [
+        'Ask a question',
+        'Read hardware news',
+        // 'See projects'
+      ]
+    })
 });
 
 bot.hear(['ask a question'], (payload, chat) => {
@@ -96,7 +104,7 @@ bot.hear(['see projects'], (payload, chat) => {
 
 bot.hear(['read hardware news'], (payload, chat) => {
   console.log('news')
-  chat.say('Here are some news:', { typing: true })
+  chat.say('Here are the latest news stories:', { typing: true })
   .then(() => {
     chat.sendAction('typing_on')
     getWevolverFeed()
