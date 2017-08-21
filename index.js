@@ -78,16 +78,16 @@ bot.hear(['hello', 'hi', /hey( there)?/i, 'what up', 'yo'], (payload, chat) => {
   chat.say({
       text: `${text}! I\'m the WevolverBot, here to help you on your hardware journey. How can I help?`,
       quickReplies: [
-        'Learn more about Wevolver',
+        'Ask a question..',
         'Read hardware news',
         // 'See projects'
       ]
     })
 });
 
-bot.hear(['Learn more about Wevolver'], (payload, chat) => {
+bot.hear(['Ask a question..'], (payload, chat) => {
   const askWhat = (convo) => {
-    convo.ask('Wevolver is a platform enabling engineers to develop perfect hardware', (payload, convo) => {
+    convo.ask('What would you like to know', (payload, convo) => {
       const text = payload.message.text;
       convo.set('name', text);
     });
@@ -96,6 +96,7 @@ bot.hear(['Learn more about Wevolver'], (payload, chat) => {
     askWhat(convo);
   });
 })
+
 
 bot.hear(['see projects'], (payload, chat) => {
   chat.say('Here are some projects')
@@ -139,7 +140,7 @@ bot.on('message', (payload, chat, data) => {
     chat.say({
       text: 'I\'m the WevolverBot, let me know how I can help!',
       quickReplies: [
-        'Learn more about Wevolver',
+        'Ask a question..',
         'Read hardware news',
         // 'See projects'
       ]
