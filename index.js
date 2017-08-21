@@ -139,7 +139,7 @@ bot.on('message', (payload, chat, data) => {
     chat.say({
       text: 'I\'m the WevolverBot, let me know how I can help!',
       quickReplies: [
-        'Ask a question',
+        'Learn more about Wevolver',
         'Read hardware news',
         // 'See projects'
       ]
