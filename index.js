@@ -76,18 +76,18 @@ bot.on('authentication', (payload, chat) => {
 bot.hear(['hello', 'hi', /hey( there)?/i, 'what up', 'yo'], (payload, chat) => {
   const text = payload.message.text;
   chat.say({
-      text: `${text}! I\'m the SparkBot, here to help you on your hardware journey. How can I help?`,
+      text: `${text}! I\'m the WevolverBot, here to help you on your hardware journey. How can I help?`,
       quickReplies: [
-        'Ask a question',
+        'Learn more about Wevolver',
         'Read hardware news',
         // 'See projects'
       ]
     })
 });
 
-bot.hear(['ask a question'], (payload, chat) => {
+bot.hear(['Learn more about Wevolver'], (payload, chat) => {
   const askWhat = (convo) => {
-    convo.ask('Sure, what would you like to ask us?', (payload, convo) => {
+    convo.ask('Wevolver is a platform enabling engineers to develop perfect hardware', (payload, convo) => {
       const text = payload.message.text;
       convo.set('name', text);
     });
@@ -120,7 +120,7 @@ bot.hear(['read hardware news'], (payload, chat) => {
             {
               title: "View",
               type:'web_url',
-              url: link.url,  
+              url: link.url,
             }
           ],
           image_url: link.image_url || 'https://www.wevolver.com/static/images/logo/logo_2014_transparent_noText_224.png',
@@ -137,7 +137,7 @@ bot.on('message', (payload, chat, data) => {
   console.log(data)
   if(!data.captured) {
     chat.say({
-      text: 'I\'m the WevoBot, here to help you on your hardware journey. How can I help?',
+      text: 'I\'m the WevolverBot, let me know how I can help!',
       quickReplies: [
         'Ask a question',
         'Read hardware news',
