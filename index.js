@@ -76,7 +76,7 @@ bot.on('authentication', (payload, chat) => {
 bot.hear(['hello', 'hi', /hey( there)?/i, 'what up', 'yo'], (payload, chat) => {
   const text = payload.message.text;
   chat.say({
-      text: `${text}! I\'m the WevolverBot, here to help you on your hardware journey. How can I help?`,
+      text: `${text}! Hi, I\'m the WevolverBot, here to help you on your hardware journey. How can I help?`,
       quickReplies: [
         'Ask a question..',
         'Read hardware news',
