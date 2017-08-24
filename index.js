@@ -87,10 +87,25 @@ bot.hear(['hello', 'hi', /hey( there)?/i, 'what up', 'yo'], (payload, chat) => {
 
 bot.hear(['Ask a question..'], (payload, chat) => {
   const askWhat = (convo) => {
+    convo.ask('What would you like to know?', (payload, convo) => {
+      const text = payload.message.text;
+      convo.say(`Oh, your name is ${text}`).then(() => askWhatSecondTime(convo));
+    });
+  };
+  const askWhatSecondTime = (convo) => {
     convo.ask('What would you like to know', (payload, convo) => {
       const text = payload.message.text;
-      convo.set('name', text);
+      if(text.slice(0,2) === 'no' || text.slice(0,2) === 'No') convo.end();
+      convo.say(`Thank you for the question. I'll forward it to my colleague Cameron, he'll answer as soon as possible.`).then(() => askWhatSecondTime(convo));
     });
+  };
+  const askWhatThirdTime = (convo) => {
+    convo.ask(`Anything else you would like to ask?`, (payload, convo) => {
+      const text = payload.message.text;
+      if(text.slice(0,2) === 'no' || text.slice(0,2) === 'No') convo.end();
+      convo.say(`Thank you for your questions!`)
+      convo.end();
+    })
   };
   chat.conversation((convo) => {
     askWhat(convo);
